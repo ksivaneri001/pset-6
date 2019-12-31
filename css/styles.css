@@ -1,1 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    background-image: url("../images/paper.jpg");
+    background-color: white;
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 15px;
+}
+
+table {
+    /* border: 2px solid; */
+
+    margin-top: 50px;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+/* td {
+    border: 1px solid;
+} */
+
+#enter-input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 40px;
+    width: 95%;
+    font-family: "Trebuchet MS", sans-serif;
+    color: #303030;
+    font-size: 25px;
+
+    border: 2px solid;
+    border-color: #62bbde;
+
+    text-align: center;
+}
+
+#submit-input {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: 40px;
+    width: 90%;
+    font-family: "Trebuchet MS", sans-serif;
+
+    border: 2px solid;
+    border-color: #62bbde;
+    background-color: white;
+}
+
+#submit-input:hover {
+    border-color: green;
+    transform: scale(1.05);
+}

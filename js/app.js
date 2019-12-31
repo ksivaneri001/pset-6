@@ -1,14 +1,13 @@
 let items = [];
 
 window.onload = function() {
-    document.getElementById("test").onclick = createItem;
+    document.getElementById("submit-input").onclick = createItem;
 }
 
 const createItem = function() {
-    let newItem = window.prompt();
-    newItem = newItem.trim();
+    let input = document.getElementById("enter-input").value;
 
-    items.push(newItem);
+    window.alert(input);
 
-    window.alert(items);
+    document.getElementById("enter-input").value = "";
 }
