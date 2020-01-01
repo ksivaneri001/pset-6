@@ -16,7 +16,7 @@ h1 {
 }
 
 table {
-    /* border: 2px solid; */
+    border: 2px solid;
 
     margin-top: 50px;
     margin-bottom: auto;
@@ -25,9 +25,9 @@ table {
     width: 80%;
 }
 
-/* td {
+td {
     border: 1px solid;
-} */
+}
 
 #enter-input {
     display: block;
