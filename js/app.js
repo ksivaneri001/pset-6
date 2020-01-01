@@ -1,7 +1,18 @@
 let items = [];
+let testVar = true;
 
 window.onload = function() {
     document.getElementById("submit-input").onclick = createItem;
+    document.getElementById("test-button").onclick = test;
+}
+
+const updateId = function() {
+    for (let i = 0; i < items.length; i++) {
+        items[i].htmlRow.setAttribute("id", "row-" + i);
+        items[i].htmlPriorityButton.setAttribute("id", "priority-button-" + i);
+        items[i].htmlCompletedButton.setAttribute("id", "completed-button-" + i);
+        items[i].htmlRemoveButton.setAttribute("id", "remove-button-" + i);
+    }
 }
 
 const createItem = function() {
@@ -12,34 +23,49 @@ const createItem = function() {
             task: input,
             completed: false,
             prioritized: false,
+            htmlRow: null,
+            htmlPriorityButton: null,
+            htmlText: null,
+            htmlCompletedButton: null,
+            htmlRemoveButton: null
         }
 
         items.push(object);
 
-        let id = items.indexOf(object);
+        let x = items.indexOf(object);
 
-        let newRow = document.createElement("tr");
-        newRow.setAttribute("id", "row-" + id);
-        document.getElementById("task-table").append(newRow);
+        items[x].htmlRow = document.createElement("tr");
+        items[x].htmlRow.setAttribute("id", "row-" + x);
+        document.getElementById("task-table").append(items[x].htmlRow);
 
-        let priorityButton = document.createElement("td");
-        priorityButton.setAttribute("id", "priority-button-" + id);
-        priorityButton.innerHTML = "!";
-        document.getElementById("row-" + id).append(priorityButton);
+        items[x].htmlPriorityButton = document.createElement("td");
+        items[x].htmlPriorityButton.setAttribute("id", "priority-button-" + x);
+        items[x].htmlPriorityButton.innerHTML = "!";
+        document.getElementById("row-" + x).append(items[x].htmlPriorityButton);
 
-        let newTask = document.createElement("td");
-        newTask.innerHTML = input;
-        document.getElementById("row-" + id).append(newTask);
+        items[x].htmlText = document.createElement("td");
+        items[x].htmlText.innerHTML = items[x].task;
+        document.getElementById("row-" + x).append(items[x].htmlText);
 
-        let completedButton = document.createElement("td");
-        completedButton.setAttribute("id", "completed-button-" + id);
-        completedButton.innerHTML = "O";
-        document.getElementById("row-" + id).append(completedButton);
+        items[x].htmlCompletedButton = document.createElement("td");
+        items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
+        items[x].htmlCompletedButton.innerHTML = "O";
+        document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
 
-        let removeButton = document.createElement("td");
-        removeButton.setAttribute("id", "remove-button-" + id);
-        removeButton.innerHTML = "X";
-        document.getElementById("row-" + id).append(removeButton);
+        items[x].htmlRemoveButton = document.createElement("td");
+        items[x].htmlRemoveButton.setAttribute("id", "remove-button-" + x);
+        items[x].htmlRemoveButton.innerHTML = "X";
+        document.getElementById("row-" + x).append(items[x].htmlRemoveButton);
+
+        updateId();
     }
     document.getElementById("enter-input").value = "";
+}
+
+const test = function() {
+    const element = document.getElementById("row-0");
+    element.remove();
+    items.shift();
+
+    updateId();
 }
