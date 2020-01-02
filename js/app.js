@@ -1,9 +1,17 @@
 let items = [];
-let testVar = true;
+let itemRemoved;
 
 window.onload = function() {
+    document.getElementById("task-table").onclick = removeButtonCheck;
+
     document.getElementById("submit-input").onclick = createItem;
     document.getElementById("test-button").onclick = test;
+
+    // document.getElementById("test-2").onclick = test2;
+}
+
+const test2 = function() {
+    alert("test-2");
 }
 
 const updateId = function() {
@@ -12,6 +20,27 @@ const updateId = function() {
         items[i].htmlPriorityButton.setAttribute("id", "priority-button-" + i);
         items[i].htmlCompletedButton.setAttribute("id", "completed-button-" + i);
         items[i].htmlRemoveButton.setAttribute("id", "remove-button-" + i);
+    }
+}
+
+function removeItem(y) {
+    const elementToRemove = document.getElementById("row-" + y);
+    elementToRemove.remove();
+    items.splice(y, 1);
+
+    updateId();
+
+    itemRemoved = true;
+}
+
+const removeButtonCheck = function() {
+    itemRemoved = false;
+
+    for (let i = 0; i < document.getElementsByClassName("remove-button").length; i++) {
+        document.getElementsByClassName("remove-button")[i].onclick = test;
+        if (itemRemoved) {
+            break;
+        }
     }
 }
 
@@ -40,6 +69,7 @@ const createItem = function() {
 
         items[x].htmlPriorityButton = document.createElement("td");
         items[x].htmlPriorityButton.setAttribute("id", "priority-button-" + x);
+        items[x].htmlPriorityButton.setAttribute("class", "priority-button");
         items[x].htmlPriorityButton.innerHTML = "!";
         document.getElementById("row-" + x).append(items[x].htmlPriorityButton);
 
@@ -49,11 +79,13 @@ const createItem = function() {
 
         items[x].htmlCompletedButton = document.createElement("td");
         items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
+        items[x].htmlCompletedButton.setAttribute("class", "completed-button");
         items[x].htmlCompletedButton.innerHTML = "O";
         document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
 
         items[x].htmlRemoveButton = document.createElement("td");
         items[x].htmlRemoveButton.setAttribute("id", "remove-button-" + x);
+        items[x].htmlRemoveButton.setAttribute("class", "remove-button");
         items[x].htmlRemoveButton.innerHTML = "X";
         document.getElementById("row-" + x).append(items[x].htmlRemoveButton);
 
