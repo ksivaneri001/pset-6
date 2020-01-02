@@ -40,7 +40,17 @@ const removeButtonCheck = function() {
     itemRemoved = false;
 
     for (let i = 0; i < removeButtons.length; i++) {
-        removeButtons[i].onclick = test;
+        removeButtons[i].onclick = function() {
+            const elementToRemove = elements[i];
+            elementToRemove.remove();
+            items.splice(i, 1);
+
+            // updateId();
+
+            itemRemoved = true;
+        }
+
+        removeButtons[i].onclick;
 
         if (itemRemoved) {
             break;
