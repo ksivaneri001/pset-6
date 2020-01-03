@@ -5,10 +5,12 @@ let priorityButtons = document.getElementsByClassName("priority-button");
 let completedButtons = document.getElementsByClassName("completed-button");
 let removeButtons = document.getElementsByClassName("remove-button");
 
+let priorityChanged;
+let completionChanged;
 let itemRemoved;
 
 window.onload = function() {
-    document.getElementById("task-table").onclick = removeButtonCheck;
+    document.getElementById("task-table").onclick = runModificationFunctions;
 
     document.getElementById("submit-input").onclick = createItem;
 }
@@ -17,26 +19,39 @@ const test = function() {
     alert("test");
 }
 
-// const updateId = function() {
-//     for (let i = 0; i < items.length; i++) {
-//         items[i].htmlRow.setAttribute("id", "row-" + i);
-//         items[i].htmlPriorityButton.setAttribute("id", "priority-button-" + i);
-//         items[i].htmlCompletedButton.setAttribute("id", "completed-button-" + i);
-//         items[i].htmlRemoveButton.setAttribute("id", "remove-button-" + i);
-//     }
-// }
+const prioritizeItem = function() {
+    priorityChanged = false;
 
-function removeItem(y) {
-    const elementToRemove = elements[y];
-    elementToRemove.remove();
-    items.splice(y, 1);
+    for (let i = 0; i < priorityButtons.length; i++) {
+        priorityButtons[i].onclick = function() {
+            if (items[i].prioritized === false) {
+                const elementToPrioritize = elements[i];
+                elements[0].before(elementToPrioritize);
+                items[i].prioritized = true;
 
-    updateId();
+                const objectToMove = items[i];
+                items.splice(i, 1);
+                items.unshift(objectToMove);
+                priorityChanged = true;
+            }
+            else if (items[i]) {
+                const elementToPrioritize = elements[i];
+                elements[elements.length - 1].after(elementToPrioritize);
+                items[i].prioritized = false;
+                priorityChanged = true;
+            }
+        }
 
-    itemRemoved = true;
+        priorityButtons[i].onclick;
+
+        if (priorityChanged) {
+            break;
+        }
+    }
+
 }
 
-const removeButtonCheck = function() {
+const removeItem = function() {
     itemRemoved = false;
 
     for (let i = 0; i < removeButtons.length; i++) {
@@ -44,9 +59,6 @@ const removeButtonCheck = function() {
             const elementToRemove = elements[i];
             elementToRemove.remove();
             items.splice(i, 1);
-
-            // updateId();
-
             itemRemoved = true;
         }
 
@@ -57,6 +69,12 @@ const removeButtonCheck = function() {
         }
     }
 }
+
+const runModificationFunctions = function() {
+    prioritizeItem();
+    removeItem();
+}
+
 const createItem = function() {
     let input = document.getElementById("enter-input").value;
     if (input === "") {}
@@ -111,3 +129,12 @@ const createItem = function() {
     }
     document.getElementById("enter-input").value = "";
 }
+
+// const updateId = function() {
+//     for (let i = 0; i < items.length; i++) {
+//         items[i].htmlRow.setAttribute("id", "row-" + i);
+//         items[i].htmlPriorityButton.setAttribute("id", "priority-button-" + i);
+//         items[i].htmlCompletedButton.setAttribute("id", "completed-button-" + i);
+//         items[i].htmlRemoveButton.setAttribute("id", "remove-button-" + i);
+//     }
+// }
