@@ -26,6 +26,7 @@ const prioritizeItem = function() {
         priorityButtons[i].onclick = function() {
             if (items[i].prioritized === false) {
                 const elementToPrioritize = elements[i];
+                priorityButtons[i].style.color = "red";
                 elements[0].before(elementToPrioritize);
                 items[i].prioritized = true;
 
@@ -36,8 +37,14 @@ const prioritizeItem = function() {
             }
             else if (items[i]) {
                 const elementToPrioritize = elements[i];
+                priorityButtons[i].style.color = "black";
                 elements[elements.length - 1].after(elementToPrioritize);
                 items[i].prioritized = false;
+
+                const objectToMove = items[i];
+                items.splice(i, 1);
+                items.push(objectToMove);
+                priorityChanged = true;
                 priorityChanged = true;
             }
         }
