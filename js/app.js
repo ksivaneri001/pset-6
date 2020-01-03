@@ -14,12 +14,12 @@ window.onload = function() {
     document.getElementById("task-table").onclick = runModificationFunctions;
 
     document.getElementById("submit-input").onclick = createItem;
-}
+};
 
 // Testing function, pretty self explanatory
 const test = function() {
     alert("test");
-}
+};
 
 // Function that changes priority of object and moves both element and object
 const prioritizeItem = function() {
@@ -29,7 +29,7 @@ const prioritizeItem = function() {
         priorityButtons[i].onclick = function() {
             if (items[i].prioritized === false) {
                 const elementToPrioritize = elements[i];
-                priorityButtons[i].style.color = "red";
+                priorityButtons[i].style.backgroundColor = "#ffc800";
                 elements[0].before(elementToPrioritize);
                 items[i].prioritized = true;
 
@@ -40,7 +40,7 @@ const prioritizeItem = function() {
             }
             else if (items[i].prioritized) {
                 const elementToPrioritize = elements[i];
-                priorityButtons[i].style.color = "black";
+                priorityButtons[i].style.backgroundColor = "white";
                 elements[elements.length - 1].after(elementToPrioritize);
                 items[i].prioritized = false;
 
@@ -49,7 +49,7 @@ const prioritizeItem = function() {
                 items.push(objectToMove);
                 priorityChanged = true;
             }
-        }
+        };
 
         priorityButtons[i].onclick;
 
@@ -57,7 +57,7 @@ const prioritizeItem = function() {
             break;
         }
     }
-}
+};
 
 // Marks items as complete
 const markAsComplete = function() {
@@ -67,13 +67,18 @@ const markAsComplete = function() {
         completedButtons[i].onclick = function() {
             if (items[i].completed === false) {
                 completedButtons[i].style.setProperty("text-decoration", "line-through");
+                completedButtons[i].style.backgroundColor = "#baff66";
                 items[i].completed = true;
+                if (items[i].prioritized) {
+                    prioritizeItem();
+                }
             }
             else if (items[i].completed) {
                 completedButtons[i].style.setProperty("text-decoration", "none");
+                completedButtons[i].style.backgroundColor = "transparent";
                 items[i].completed = false;
             }
-        }
+        };
 
         completedButtons[i].onclick;
 
@@ -81,7 +86,7 @@ const markAsComplete = function() {
             break;
         }
     }
-}
+};
 
 // Removes element and object
 const removeItem = function() {
@@ -93,7 +98,7 @@ const removeItem = function() {
             elementToRemove.remove();
             items.splice(i, 1);
             itemRemoved = true;
-        }
+        };
 
         removeButtons[i].onclick;
 
@@ -108,7 +113,7 @@ const runModificationFunctions = function() {
     prioritizeItem();
     markAsComplete();
     removeItem();
-}
+};
 
 // Creates new object and corresponding element
 const createItem = function() {
@@ -122,7 +127,6 @@ const createItem = function() {
             htmlRow: null,
             htmlPriorityButton: null,
             htmlText: null,
-            htmlCompletedButton: null,
             htmlRemoveButton: null
         }
 
@@ -165,7 +169,7 @@ const createItem = function() {
         // updateId();
     }
     document.getElementById("enter-input").value = "";
-}
+};
 
 // const updateId = function() {
 //     for (let i = 0; i < items.length; i++) {

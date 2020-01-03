@@ -15,18 +15,69 @@ h1 {
     margin-top: 15px;
 }
 
-table {
-    border: 2px solid;
+ul {
+    text-align: center;
+    margin-top: 28px;
+}
 
-    margin-top: 50px;
+li {
+    margin-top: 6px;
+}
+
+table {
     margin-bottom: auto;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
 }
 
-td {
-    border: 1px solid;
+.input-table {
+    width: 80%;
+    margin-top: 50px;
+}
+
+.row {
+    margin-top: 20px;
+    height: 40px;
+}
+
+.priority-button {
+    width: 40px;
+    text-align: center;
+    background-color: white;
+    border: 2px solid;
+}
+
+.priority-button:hover {
+    background-color: #fff98a;
+}
+
+.completed-button {
+    width: auto;
+    text-indent: 10px;
+    font-size: 20px;
+    border: 2px dotted;
+}
+
+.completed-button:hover {
+    background-color: #d9ffcf
+}
+
+.remove-button {
+    align: left;
+    width: 40px;
+    text-align: center;
+    background-color: white;
+    border: 2px solid;
+}
+
+.remove-button:hover {
+    background-color: #ff4040;
+}
+
+#task-table {
+    width: 1000px;
+    margin-top: 22px;
+    border-spacing: 10px;
 }
 
 #enter-input {
