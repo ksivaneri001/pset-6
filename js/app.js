@@ -38,7 +38,7 @@ const prioritizeItem = function() {
                 items.unshift(objectToMove);
                 priorityChanged = true;
             }
-            else if (items[i]) {
+            else if (items[i].prioritized) {
                 const elementToPrioritize = elements[i];
                 priorityButtons[i].style.color = "black";
                 elements[elements.length - 1].after(elementToPrioritize);
@@ -48,11 +48,34 @@ const prioritizeItem = function() {
                 items.splice(i, 1);
                 items.push(objectToMove);
                 priorityChanged = true;
-                priorityChanged = true;
             }
         }
 
         priorityButtons[i].onclick;
+
+        if (priorityChanged) {
+            break;
+        }
+    }
+}
+
+// Marks items as complete
+const markAsComplete = function() {
+    completionChanged = false;
+
+    for (let i = 0; i < completedButtons.length; i++) {
+        completedButtons[i].onclick = function() {
+            if (items[i].completed === false) {
+                completedButtons[i].style.setProperty("text-decoration", "line-through");
+                items[i].completed = true;
+            }
+            else if (items[i].completed) {
+                completedButtons[i].style.setProperty("text-decoration", "none");
+                items[i].completed = false;
+            }
+        }
+
+        completedButtons[i].onclick;
 
         if (priorityChanged) {
             break;
@@ -83,6 +106,7 @@ const removeItem = function() {
 // Runs the prioritization, completion, and removal functions
 const runModificationFunctions = function() {
     prioritizeItem();
+    markAsComplete();
     removeItem();
 }
 
@@ -93,8 +117,8 @@ const createItem = function() {
     else {
         let object = {
             task: input,
-            completed: false,
             prioritized: false,
+            completed: false,
             htmlRow: null,
             htmlPriorityButton: null,
             htmlText: null,
@@ -120,15 +144,16 @@ const createItem = function() {
 
         items[x].htmlText = document.createElement("td");
         items[x].htmlText.innerHTML = items[x].task;
+        items[x].htmlText.setAttribute("class", "completed-button");
         // document.getElementById("row-" + x).append(items[x].htmlText);
         elements[x].append(items[x].htmlText);
 
-        items[x].htmlCompletedButton = document.createElement("td");
-        // items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
-        items[x].htmlCompletedButton.setAttribute("class", "completed-button");
-        items[x].htmlCompletedButton.innerHTML = "O";
-        // document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
-        elements[x].append(items[x].htmlCompletedButton);
+        // items[x].htmlCompletedButton = document.createElement("td");
+        // // items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
+        // items[x].htmlCompletedButton.setAttribute("class", "completed-button");
+        // items[x].htmlCompletedButton.innerHTML = "O";
+        // // document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
+        // elements[x].append(items[x].htmlCompletedButton);
 
         items[x].htmlRemoveButton = document.createElement("td");
         // items[x].htmlRemoveButton.setAttribute("id", "remove-button-" + x);
