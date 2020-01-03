@@ -9,16 +9,19 @@ let priorityChanged;
 let completionChanged;
 let itemRemoved;
 
+// Runs other functions once page loads
 window.onload = function() {
     document.getElementById("task-table").onclick = runModificationFunctions;
 
     document.getElementById("submit-input").onclick = createItem;
 }
 
+// Testing function, pretty self explanatory
 const test = function() {
     alert("test");
 }
 
+// Function that changes priority of object and moves both element and object
 const prioritizeItem = function() {
     priorityChanged = false;
 
@@ -55,9 +58,9 @@ const prioritizeItem = function() {
             break;
         }
     }
-
 }
 
+// Removes element and object
 const removeItem = function() {
     itemRemoved = false;
 
@@ -77,11 +80,13 @@ const removeItem = function() {
     }
 }
 
+// Runs the prioritization, completion, and removal functions
 const runModificationFunctions = function() {
     prioritizeItem();
     removeItem();
 }
 
+// Creates new object and corresponding element
 const createItem = function() {
     let input = document.getElementById("enter-input").value;
     if (input === "") {}
