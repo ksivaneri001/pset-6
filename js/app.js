@@ -2,6 +2,7 @@ let items = [];
 
 let elements = document.getElementsByClassName("row");
 let priorityButtons = document.getElementsByClassName("priority-button");
+let text = document.getElementsByClassName("text");
 let completedButtons = document.getElementsByClassName("completed-button");
 let removeButtons = document.getElementsByClassName("remove-button");
 
@@ -66,16 +67,16 @@ const markAsComplete = function() {
     for (let i = 0; i < completedButtons.length; i++) {
         completedButtons[i].onclick = function() {
             if (items[i].completed === false) {
-                completedButtons[i].style.setProperty("text-decoration", "line-through");
-                completedButtons[i].style.backgroundColor = "#baff66";
+                text[i].style.setProperty("text-decoration", "line-through");
+                text[i].style.backgroundColor = "#baff66";
                 items[i].completed = true;
                 if (items[i].prioritized) {
                     prioritizeItem();
                 }
             }
             else if (items[i].completed) {
-                completedButtons[i].style.setProperty("text-decoration", "none");
-                completedButtons[i].style.backgroundColor = "transparent";
+                text[i].style.setProperty("text-decoration", "none");
+                text[i].style.backgroundColor = "transparent";
                 items[i].completed = false;
             }
         };
@@ -127,6 +128,8 @@ const createItem = function() {
             htmlRow: null,
             htmlPriorityButton: null,
             htmlText: null,
+            htmlCompletedButton: null,
+            htmlCheckImage: null,
             htmlRemoveButton: null
         }
 
@@ -148,16 +151,19 @@ const createItem = function() {
 
         items[x].htmlText = document.createElement("td");
         items[x].htmlText.innerHTML = items[x].task;
-        items[x].htmlText.setAttribute("class", "completed-button");
+        items[x].htmlText.setAttribute("class", "text");
         // document.getElementById("row-" + x).append(items[x].htmlText);
         elements[x].append(items[x].htmlText);
 
-        // items[x].htmlCompletedButton = document.createElement("td");
-        // // items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
-        // items[x].htmlCompletedButton.setAttribute("class", "completed-button");
-        // items[x].htmlCompletedButton.innerHTML = "O";
-        // // document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
-        // elements[x].append(items[x].htmlCompletedButton);
+        items[x].htmlCompletedButton = document.createElement("td");
+        // items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
+        items[x].htmlCompletedButton.setAttribute("class", "completed-button");
+        // document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
+        elements[x].append(items[x].htmlCompletedButton);
+
+        items[x].htmlCheckImage = document.createElement("img");
+        items[x].htmlCheckImage.src = "images/check.png";
+        completedButtons[x].append(items[x].htmlCheckImage);
 
         items[x].htmlRemoveButton = document.createElement("td");
         // items[x].htmlRemoveButton.setAttribute("id", "remove-button-" + x);
