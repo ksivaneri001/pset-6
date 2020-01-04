@@ -30,7 +30,7 @@ const prioritizeItem = function() {
         priorityButtons[i].onclick = function() {
             if (items[i].prioritized === false) {
                 const elementToPrioritize = elements[i];
-                priorityButtons[i].style.backgroundColor = "#ffc800";
+                priorityButtons[i].style.color = "red";
                 elements[0].before(elementToPrioritize);
                 items[i].prioritized = true;
 
@@ -41,7 +41,7 @@ const prioritizeItem = function() {
             }
             else if (items[i].prioritized) {
                 const elementToPrioritize = elements[i];
-                priorityButtons[i].style.backgroundColor = "white";
+                priorityButtons[i].style.color = "black";
                 elements[elements.length - 1].after(elementToPrioritize);
                 items[i].prioritized = false;
 
@@ -52,7 +52,7 @@ const prioritizeItem = function() {
             }
         };
 
-        priorityButtons[i].onclick;
+        // priorityButtons[i].onclick;
 
         if (priorityChanged) {
             break;
@@ -70,9 +70,6 @@ const markAsComplete = function() {
                 text[i].style.setProperty("text-decoration", "line-through");
                 text[i].style.backgroundColor = "#baff66";
                 items[i].completed = true;
-                if (items[i].prioritized) {
-                    prioritizeItem();
-                }
             }
             else if (items[i].completed) {
                 text[i].style.setProperty("text-decoration", "none");
@@ -81,7 +78,7 @@ const markAsComplete = function() {
             }
         };
 
-        completedButtons[i].onclick;
+        // completedButtons[i].onclick;
 
         if (priorityChanged) {
             break;
@@ -101,7 +98,7 @@ const removeItem = function() {
             itemRemoved = true;
         };
 
-        removeButtons[i].onclick;
+        // removeButtons[i].onclick;
 
         if (itemRemoved) {
             break;
@@ -163,6 +160,7 @@ const createItem = function() {
 
         items[x].htmlCheckImage = document.createElement("img");
         items[x].htmlCheckImage.src = "images/check.png";
+        items[x].htmlCheckImage.setAttribute("class", "check");
         completedButtons[x].append(items[x].htmlCheckImage);
 
         items[x].htmlRemoveButton = document.createElement("td");
