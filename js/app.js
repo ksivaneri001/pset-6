@@ -24,11 +24,6 @@ document.addEventListener("keyup", function(pressEnter) {
   }
 });
 
-// Testing function, pretty self explanatory
-const test = function() {
-    alert("test");
-};
-
 // Function that changes priority of object and moves both element and object
 const prioritizeItem = function() {
     priorityChanged = false;
@@ -59,8 +54,6 @@ const prioritizeItem = function() {
             }
         };
 
-        // priorityButtons[i].onclick;
-
         if (priorityChanged) {
             break;
         }
@@ -85,8 +78,6 @@ const markAsComplete = function() {
             }
         };
 
-        // completedButtons[i].onclick;
-
         if (priorityChanged) {
             break;
         }
@@ -104,8 +95,6 @@ const removeItem = function() {
             items.splice(i, 1);
             itemRemoved = true;
         };
-
-        // removeButtons[i].onclick;
 
         if (itemRemoved) {
             break;
@@ -142,27 +131,21 @@ const createItem = function() {
         let x = items.indexOf(object);
 
         items[x].htmlRow = document.createElement("tr");
-        // items[x].htmlRow.setAttribute("id", "row-" + x);
         items[x].htmlRow.setAttribute("class", "row");
         document.getElementById("task-table").append(items[x].htmlRow);
 
         items[x].htmlPriorityButton = document.createElement("td");
-        // items[x].htmlPriorityButton.setAttribute("id", "priority-button-" + x);
         items[x].htmlPriorityButton.setAttribute("class", "priority-button");
         items[x].htmlPriorityButton.innerHTML = "!";
-        // document.getElementById("row-" + x).append(items[x].htmlPriorityButton);
         elements[x].append(items[x].htmlPriorityButton);
 
         items[x].htmlText = document.createElement("td");
         items[x].htmlText.innerHTML = items[x].task;
         items[x].htmlText.setAttribute("class", "text");
-        // document.getElementById("row-" + x).append(items[x].htmlText);
         elements[x].append(items[x].htmlText);
 
         items[x].htmlCompletedButton = document.createElement("td");
-        // items[x].htmlCompletedButton.setAttribute("id", "completed-button-" + x);
         items[x].htmlCompletedButton.setAttribute("class", "completed-button");
-        // document.getElementById("row-" + x).append(items[x].htmlCompletedButton);
         elements[x].append(items[x].htmlCompletedButton);
 
         items[x].htmlCheckImage = document.createElement("img");
@@ -171,22 +154,9 @@ const createItem = function() {
         completedButtons[x].append(items[x].htmlCheckImage);
 
         items[x].htmlRemoveButton = document.createElement("td");
-        // items[x].htmlRemoveButton.setAttribute("id", "remove-button-" + x);
         items[x].htmlRemoveButton.setAttribute("class", "remove-button");
         items[x].htmlRemoveButton.innerHTML = "X";
-        // document.getElementById("row-" + x).append(items[x].htmlRemoveButton);
         elements[x].append(items[x].htmlRemoveButton);
-
-        // updateId();
     }
     document.getElementById("enter-input").value = "";
 };
-
-// const updateId = function() {
-//     for (let i = 0; i < items.length; i++) {
-//         items[i].htmlRow.setAttribute("id", "row-" + i);
-//         items[i].htmlPriorityButton.setAttribute("id", "priority-button-" + i);
-//         items[i].htmlCompletedButton.setAttribute("id", "completed-button-" + i);
-//         items[i].htmlRemoveButton.setAttribute("id", "remove-button-" + i);
-//     }
-// }
