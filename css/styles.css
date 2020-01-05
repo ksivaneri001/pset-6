@@ -138,3 +138,8 @@ strong {
     border-color: green;
     transform: scale(1.05);
 }
+
+#submit-input:active {
+    border-color: green;
+    transform: scale(1);
+}
