@@ -12,7 +12,7 @@ let itemRemoved;
 
 // Runs other functions once page loads
 window.onload = function() {
-    document.getElementById("task-table").onclick = runModificationFunctions;
+    document.getElementById("task-table").onmouseover = runModificationFunctions;
 
     document.getElementById("submit-input").onclick = createItem;
 };
