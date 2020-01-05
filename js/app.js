@@ -17,6 +17,13 @@ window.onload = function() {
     document.getElementById("submit-input").onclick = createItem;
 };
 
+// Creates item when user presses enter key
+document.addEventListener("keyup", function(pressEnter) {
+  if (pressEnter.keyCode === 13) {
+    createItem();
+  }
+});
+
 // Testing function, pretty self explanatory
 const test = function() {
     alert("test");
